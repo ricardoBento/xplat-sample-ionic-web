@@ -59,9 +59,20 @@
         }
       }
     },
-    "web-myapp": {
-      "root": "apps/web-myapp/",
-      "sourceRoot": "apps/web-myapp/src",
+    "ionic-mobile": {
+      "root": "apps/ionic-mobile/",
+      "sourceRoot": "apps/ionic-mobile/src",
+      "projectType": "application",
+      "prefix": "abc",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "web-test": {
+      "root": "apps/web-test/",
+      "sourceRoot": "apps/web-test/src",
       "projectType": "application",
       "prefix": "abc",
       "schematics": {
@@ -73,18 +84,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/web-myapp",
-            "index": "apps/web-myapp/src/index.html",
-            "main": "apps/web-myapp/src/main.ts",
-            "polyfills": "apps/web-myapp/src/polyfills.ts",
-            "tsConfig": "apps/web-myapp/tsconfig.app.json",
+            "outputPath": "dist/apps/web-test",
+            "index": "apps/web-test/src/index.html",
+            "main": "apps/web-test/src/main.ts",
+            "polyfills": "apps/web-test/src/polyfills.ts",
+            "tsConfig": "apps/web-test/tsconfig.app.json",
             "assets": [
-              "apps/web-myapp/src/favicon.ico",
-              "apps/web-myapp/src/assets"
+              "apps/web-test/src/favicon.ico",
+              "apps/web-test/src/assets"
             ],
             "styles": [
               "xplat/web/scss/_index.scss",
-              "apps/web-myapp/src/styles.scss"
+              "apps/web-test/src/styles.scss"
             ],
             "scripts": []
           },
@@ -92,8 +103,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/web-myapp/src/environments/environment.ts",
-                  "with": "apps/web-myapp/src/environments/environment.prod.ts"
+                  "replace": "apps/web-test/src/environments/environment.ts",
+                  "with": "apps/web-test/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -118,87 +129,68 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "web-myapp:build"
+            "browserTarget": "web-test:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "web-myapp:build:production"
+              "browserTarget": "web-test:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "web-myapp:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "apps/web-myapp/src/test.ts",
-            "polyfills": "apps/web-myapp/src/polyfills.ts",
-            "tsConfig": "apps/web-myapp/tsconfig.spec.json",
-            "karmaConfig": "apps/web-myapp/karma.conf.js",
-            "styles": [
-              "apps/web-myapp/src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "apps/web-myapp/src/favicon.ico",
-              "apps/web-myapp/src/assets"
-            ]
+            "browserTarget": "web-test:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/web-myapp/tsconfig.app.json",
-              "apps/web-myapp/tsconfig.spec.json"
+              "apps/web-test/tsconfig.app.json",
+              "apps/web-test/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/web-test/jest.config.js",
+            "tsConfig": "apps/web-test/tsconfig.spec.json",
+            "setupFile": "apps/web-test/src/test-setup.ts"
+          }
         }
       }
     },
-    "web-myapp-e2e": {
-      "root": "apps/web-myapp-e2e",
+    "web-test-e2e": {
+      "root": "apps/web-test-e2e",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/web-myapp-e2e/protractor.conf.js",
-            "devServerTarget": "web-myapp:serve"
+            "cypressConfig": "apps/web-test-e2e/cypress.json",
+            "tsConfig": "apps/web-test-e2e/tsconfig.e2e.json",
+            "devServerTarget": "web-test:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "web-myapp:serve:production"
+              "devServerTarget": "web-test:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/web-myapp-e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/web-test-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "ionic-myapp": {
-      "root": "apps/ionic-myapp/",
-      "sourceRoot": "apps/ionic-myapp/src",
-      "projectType": "application",
-      "prefix": "abc",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
         }
       }
     }

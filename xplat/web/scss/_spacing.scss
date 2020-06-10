@@ -86,25 +86,23 @@ $spacers: (
     )
   )
 ) !default;
-
-/**
+/* *
  * Margin and Padding
  * The following creates this pattern:
  * .m-0{margin:0}.m-t-0{margin-top:0}.m-r-0{margin-right:0}.m-b-0{margin-bottom:0}.m-l-0{margin-left:0}.m-x-0{margin-right:0;margin-left:0}.m-y-0{margin-top:0;margin-bottom:0}
  * Same for Padding (using the 'p' abbreviation)
  * From 0, 2, 5, 10, 15, 20, 25, 30
-**/
+* */
 // sass-lint:disable-all
 @each $prop, $abbrev in (margin: m, padding: p) {
   // sass-lint:enable-all
   @each $size, $lengths in $spacers {
     $length-x: map-get($lengths, x);
-    $length-y: map-get($lengths, y);
-
-    // sass-lint:disable-all
+    $length-y: map-get($lengths, y); // sass-lint:disable-all
     .#{$abbrev}-#{$size} {
       #{$prop}: #{$length-y}px;
-    } // a = All sides (can just use one length)
+    }
+    // a = All sides (can just use one length)
     // sass-lint:enable-all
     .#{$abbrev}-t-#{$size} {
       #{$prop}-top: #{$length-y}px;
@@ -117,14 +115,11 @@ $spacers: (
     }
     .#{$abbrev}-l-#{$size} {
       #{$prop}-left: #{$length-x}px;
-    }
-
-    // Axes
+    } // Axes
     .#{$abbrev}-x-#{$size} {
       #{$prop}-right: #{$length-x}px;
       #{$prop}-left: #{$length-x}px;
     }
-
     .#{$abbrev}-y-#{$size} {
       #{$prop}-top: #{$length-y}px;
       #{$prop}-bottom: #{$length-y}px;

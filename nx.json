@@ -14,13 +14,13 @@
     "xplat": {
       "tags": []
     },
-    "web-myapp": {
+    "ionic-mobile": {
       "tags": []
     },
-    "web-myapp-e2e": {
+    "web-test": {
       "tags": []
     },
-    "ionic-myapp": {
+    "web-test-e2e": {
       "tags": []
     }
   }
